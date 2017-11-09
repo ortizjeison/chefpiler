@@ -12,7 +12,7 @@
 #include <stdio.h>
 class compilador_driver;
 }
-%param { compilador_driver& driver }
+%param { compilador_driver & driver }
 %locations
 %define parse.trace
 %define parse.error verbose
@@ -23,7 +23,7 @@ class compilador_driver;
 }
 %define api.token.prefix {TOK_}
 
-//Listadode Terminales
+//Listado de Terminales
 %token MAS "+"
 %token MENOS "-"
 %token POR "*"
