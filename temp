@@ -1,0 +1,38 @@
+ws [ \t\n]+
+digit [0-9]
+integer {digit}+
+if (if)
+elsif (elsif)
+else (else)
+and (and)
+or (or)
+not (not)
+xor (xor)
+
+%%
+
+{ws} { }
+{integer} {
+  //yylval.intValue = atof(yytext);
+  //return INTEGER;
+  printf("int:: %s\n",yytext);
+}
+
+{if} {
+  printf("if:: %s\n",yytext);
+}
+
+{elsif} {}
+{else} {}
+{and} {}
+{or} {}
+{not} {}
+{xor} {}
+"+" {}
+"-" {}
+"*" {}
+"/" {}
+"(" {}
+")" {}
+"{" {}
+"}" {}
