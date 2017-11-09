@@ -26,7 +26,7 @@ xor (xor)
 %%
 /*espacio? nada*/
 {ws}  {}
-/*entero? devuelvalo*/
+
 {integer} {return yy::compilador_parser::make_NUMERO(strtol (yytext, NULL, 10),loc);}
 /*{IDENTIFICADOR}	{return yy::compilador_parser::make_IDENTIFICADOR(yytext,loc);}*/
 
