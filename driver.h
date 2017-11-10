@@ -9,7 +9,11 @@ YY_DECL;
 class compilador_driver
 {
 public:
-  float resultado;
+
+  float codigo;
+  int sumA;
+  int sumB;
+  std::vector<int> ings;
   void iniciarScanner();
   void terminarScanner();
 

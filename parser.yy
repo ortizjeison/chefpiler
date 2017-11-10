@@ -42,23 +42,22 @@ class compilador_driver;
 %%
 %start INICIO;
 
-INICIO : E {driver.resultado= $1;};
+INICIO : E {driver.codigo= $1;};
 
-E : E "+" T {$$=$1+$3;}
+E : E "+" T {$$=$1+$3; driver.sumA= $1; driver.sumB=$3;
+
+}
    |E "-" T {$$=$1-$3;}
    |T       {$$=$1;};
 
-T : T "*" F {
-  $$=$1*$3;
-  //Operacion en chef (String)
-}
+T : T "*" F {$$=$1*$3;}
    |T "/" F {$$=$1/$3;}
    |F       {$$=$1;};
 
-F : "int"   {$$=$1;};
+F : "int"   {$$=$1; driver.ings.push_back($1);};
 
 %%
 void yy::compilador_parser::error(const location_type& lugar, const std::string& lexema)
 {
-  std::cout << "error custom string " << lexema << std::endl;
+  std::cout << "####ERROR#####" << lexema << std::endl;
 }
