@@ -25,7 +25,7 @@ int find(int n, std::vector<int> v){
 
 
 //Standar Strings:
-string header = "New Tasty Algorithm. \nComments. \nIngredients.\n";
+string header = "New Tasty Algorithm. \nCHEFPILER v1.0 \nIngredients.\n";
 string endcode = "Pour contents of the 1st mixing bowl into the baking dish.\n\nServes 1.";
 string method = "Method.\n";
 string ingredients="0 ingredientJ\n1 ingredientK\n";
@@ -38,6 +38,7 @@ int main(){
   }else{
     //printf("La entrada es correcta\n");
     printf("resultado esperado = %f\n",driver.codigo);
+    cout<<endl<<endl;
 
     for(int i =0;i<driver.ings.size();i++){
       ingredients += toString(driver.ings[i]) + " ingredient"+toString(i)+'\n';
