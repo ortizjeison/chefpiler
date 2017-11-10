@@ -37,7 +37,7 @@ int main(){
     //printf("La entrada es incorrecta\n");
   }else{
     //printf("La entrada es correcta\n");
-    printf("resultado = %f\n",driver.codigo);
+    printf("resultado esperado = %f\n",driver.codigo);
 
     for(int i =0;i<driver.ings.size();i++){
       ingredients += toString(driver.ings[i]) + " ingredient"+toString(i)+'\n';
@@ -131,7 +131,7 @@ int main(){
       //cout<<driver.ops[i]<<endl;
     }
     ingredients+='\n';
-    
+
     cout<<header + ingredients+ method + endcode<<endl;
   }
 
