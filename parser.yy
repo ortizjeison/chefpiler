@@ -45,15 +45,15 @@ class compilador_driver;
 INICIO : E {driver.codigo= $1;};
 
 E : E "+" T {$$=$1+$3;
-      driver.ops.push_back($1);driver.ops.push_back(5544);driver.ops.push_back($3);}
+              driver.ops.push_back($1);driver.ops.push_back(5544);driver.ops.push_back($3);}
    |E "-" T {$$=$1-$3;
-      driver.ops.push_back($1);driver.ops.push_back(4455);driver.ops.push_back($3);};
+            driver.ops.push_back($1);driver.ops.push_back(4455);driver.ops.push_back($3);};
    |T       {$$=$1;};
 
 T : T "*" F {$$=$1*$3;
-      driver.ops.push_back($1);driver.ops.push_back(7788);driver.ops.push_back($3);}
+            driver.ops.push_back($1);driver.ops.push_back(7788);driver.ops.push_back($3);}
    |T "/" F {$$=$1/$3;
-      driver.ops.push_back($1);driver.ops.push_back(8877);driver.ops.push_back($3);}
+            driver.ops.push_back($1);driver.ops.push_back(8877);driver.ops.push_back($3);}
    |F       {$$=$1;};
 
 F : "int"   {$$=$1; driver.ings.push_back($1);};
