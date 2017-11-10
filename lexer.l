@@ -15,6 +15,7 @@ static yy::location loc;
 ws [ \t\n]+
 digit [0-9]
 integer {digit}+
+integern -{integer}+
 
 %%
 
