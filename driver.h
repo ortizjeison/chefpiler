@@ -19,6 +19,7 @@ public:
   int sumA;
   int sumB;
   std::vector<int> ings;
+  std::vector<float> ops;
   void iniciarScanner();
   void terminarScanner();
 

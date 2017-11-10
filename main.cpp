@@ -14,7 +14,14 @@ string toString(T num){
 }
 
 
-//Método addIngredients
+//Method find token index
+int find(int n, std::vector<int> v){
+  for(int i=0;i<v.size();i++){
+    if(v[i]==n){
+      return i;
+    }
+  }
+}
 
 
 //Standar Strings:
@@ -39,7 +46,24 @@ int main(){
 
     method += "Add a into the 1st mixing bowl.\n";
     method += "Add b into the 1st mixing bowl.\n";
-    cout<<header + ingredients+ method + endcode<<endl;
+    //cout<<header + ingredients+ method + endcode<<endl;
+
+    //Building the method in chef.
+    //Para los tokens 1 y 2:
+    int pos=find(driver.ops[0],driver.ings);
+
+    cout<<driver.ops[0]<<endl<<endl;
+    for(int i =0;i<driver.ings.size();i++){
+      cout<<driver.ings[i]<<endl;
+    }
+
+
+    cout<<"pos= "<<pos<<endl;
+
+    for(int i =0;i<driver.ops.size();i++){
+      //cout<<driver.ops[i]<<endl;
+    }
+
   }
 
   return 0;

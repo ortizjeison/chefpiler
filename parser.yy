@@ -44,12 +44,16 @@ class compilador_driver;
 
 INICIO : E {driver.codigo= $1;};
 
-E : E "+" T {$$=$1+$3; driver.sumA= $1; driver.sumB=$3;}
-   |E "-" T {$$=$1-$3;};
+E : E "+" T {$$=$1+$3;
+      driver.ops.push_back($1);driver.ops.push_back(0.1);driver.ops.push_back($3);}
+   |E "-" T {$$=$1-$3;
+      driver.ops.push_back($1);driver.ops.push_back(0.2);driver.ops.push_back($3);};
    |T       {$$=$1;};
 
-T : T "*" F {$$=$1*$3;}
-   |T "/" F {$$=$1/$3;}
+T : T "*" F {$$=$1*$3;
+      driver.ops.push_back($1);driver.ops.push_back(0.3);driver.ops.push_back($3);}
+   |T "/" F {$$=$1/$3;
+      driver.ops.push_back($1);driver.ops.push_back(0.4);driver.ops.push_back($3);}
    |F       {$$=$1;};
 
 F : "int"   {$$=$1; driver.ings.push_back($1);};

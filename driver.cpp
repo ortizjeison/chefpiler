@@ -11,7 +11,7 @@ int compilador_driver::parse(const std::string& archivo)
   parser.set_debug_level(false);
   //VARS
   std::vector<int> ings;
-  std::vector<std::string> ops;
+  std::vector<float> ops;
   float codigo = parser.parse();
   int sumA = parser.parse();
   int sumB = parser.parse();
