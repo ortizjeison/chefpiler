@@ -28,7 +28,7 @@ int find(int n, std::vector<int> v){
 string header = "New Tasty Algorithm. \nComments. \nIngredients.\n";
 string endcode = "Pour contents of the 1st mixing bowl into the baking dish.\n\nServes 1.";
 string method = "Method.\n";
-string ingredients="0 zero\n1 one\n";
+string ingredients="0 ingredientJ\n1 ingredientK\n";
 
 int main(){
   float codigo = 0.0;
@@ -42,7 +42,6 @@ int main(){
     for(int i =0;i<driver.ings.size();i++){
       ingredients += toString(driver.ings[i]) + " ingredient"+toString(i)+'\n';
     }
-    ingredients+='\n';
 
     //Building the method in chef.
     //Para los tokens 1 y 2:
@@ -55,19 +54,19 @@ int main(){
     //cout<<"A = "<<posA<<" / B = "<<posB<<endl;
     if(driver.ops[1]==5544){
       //"Add " + "ingredient"+toString(driver.ings[posA])+" into the 1st mixing bowl.\n";
-      method += "Put zero into the 1st mixing bowl.\n";
-      method += "Add " + std::string("ingredient"+toString(posA)+" into the 1st mixing bowl.\n");
-      method += "Add " + std::string("ingredient"+toString(posB)+" into the 1st mixing bowl.\n");
+      method += "Put ingredientJ into the 1st mixing bowl.\n";
+      method += "Add " + std::string("ingredient"+toString(posA)+" to the 1st mixing bowl.\n");
+      method += "Add " + std::string("ingredient"+toString(posB)+" to the 1st mixing bowl.\n");
     }else if (driver.ops[1]==4455) {
-      method += "Put zero into the 1st mixing bowl.\n";
-      method += "Remove " + std::string("ingredient"+toString(posA)+" into the 1st mixing bowl.\n");
-      method += "Remove " + std::string("ingredient"+toString(posB)+" into the 1st mixing bowl.\n");
+      method += "Put ingredientJ into the 1st mixing bowl.\n";
+      method += "Remove " + std::string("ingredient"+toString(posA)+" from 1st mixing bowl.\n");
+      method += "Remove " + std::string("ingredient"+toString(posB)+" from 1st mixing bowl.\n");
     }else if(driver.ops[1]==7788){
-      method += "Put one into the 1st mixing bowl.\n";
+      method += "Put ingredientK into the 1st mixing bowl.\n";
       method += "Combine " + std::string("ingredient"+toString(posA)+" into the 1st mixing bowl.\n");
       method += "Combine " + std::string("ingredient"+toString(posB)+" into the 1st mixing bowl.\n");
     }else if(driver.ops[1]==8877){
-      method += "Put one into the 1st mixing bowl.\n";
+      method += "Put ingredientK into the 1st mixing bowl.\n";
       method += "Divide " + std::string("ingredient"+toString(posB)+" into the 1st mixing bowl.\n");
       method += "Divide " + std::string("ingredient"+toString(posB)+" into the 1st mixing bowl.\n");
     }
@@ -77,21 +76,62 @@ int main(){
     for(int i=3;i<driver.ops.size()-2;i++){
       if(driver.ops[i+1]==5544){
         int index=find(driver.ops[i+2],driver.ings);
-        method += "Add " + std::string("ingredient"+toString(index)+" into the 1st mixing bowl.\n");
-        cout<<"sumando"<<endl;
-        cout<<"driver.ops[i+1] = "<<driver.ops[i+1]<<endl<<"toString(i+2) = "<<i+2<<endl;
+        method += "Add " + std::string("ingredient"+toString(index)+" to the 1st mixing bowl.\n");
       }else if (driver.ops[i+1]==4455) {
-        method += "Remove " + std::string("ingredient"+toString(i+2)+" into the 1st mixing bowl.\n");
-        cout<<"restando"<<endl;
+        int index=find(driver.ops[i+2],driver.ings);
+        method += "Remove " + std::string("ingredient"+toString(index)+" from 1st mixing bowl.\n");
       }else if(driver.ops[i+1]==7788){
-        method += "Combine " + std::string("ingredient"+toString(i+2)+" into the 1st mixing bowl.\n");
-        cout<<"mult"<<endl;
+        int index=find(driver.ops[i+2],driver.ings);
+        method += "Combine " + std::string("ingredient"+toString(index)+" into the 1st mixing bowl.\n");
       }else if(driver.ops[1]==8877){
-        method += "Divide " + std::string("ingredient"+toString(i+2)+" into the 1st mixing bowl.\n");
-        cout<<"div"<<endl;
+        int index=find(driver.ops[i+2],driver.ings);
+        method += "Divide " + std::string("ingredient"+toString(index)+" into the 1st mixing bowl.\n");
       }
     }
 
+    //Raiz del árbol
+    int j = driver.ops.size();
+    if(driver.ops[j-2]==5544){
+      //++++++++++++++++++++++++++
+      method += "Combine ingredientJ into the 1st mixing bowl.\n";
+      ingredients += toString(driver.ops[j-3]) + " ingredientN\n";
+      ingredients += toString(driver.ops[j-1]) + " ingredientM\n";
+      method += "Add " + std::string("ingredientN to the 1st mixing bowl.\n");
+      method += "Add " + std::string("ingredientM to the 1st mixing bowl.\n");
+
+      //-----------------------------
+    }else if (driver.ops[j-2]==4455) {
+      cout<<"Restando"<<endl;
+      method += "Combine ingredientJ into the 1st mixing bowl.\n";
+      ingredients += toString(driver.ops[j-3]) + " ingredientN\n";
+      ingredients += toString(driver.ops[j-1]) + " ingredientM\n";
+      method += "Add " + std::string("ingredientN to the 1st mixing bowl.\n");
+      method += "Remove " + std::string("ingredientM from 1st mixing bowl.\n");
+
+    }else if(driver.ops[j-2]==7788){
+      method += "Combine ingredientJ into the 1st mixing bowl.\n";
+
+      ingredients += toString(driver.ops[j-3]) + " ingredientN\n";
+      ingredients += toString(driver.ops[j-1]) + " ingredientM\n";
+      method += "Add " + std::string("ingredientN to the 1st mixing bowl.\n");
+      method += "Combine " + std::string("ingredientM into 1st mixing bowl.\n");
+
+    }else if(driver.ops[j-2]==8877){
+      method += "Combine ingredientJ into the 1st mixing bowl.\n";
+      method += "Add ingredientK to the 1st mixing bowl.\n";
+
+      ingredients += toString(driver.ops[j-3]) + " ingredientN\n";
+      ingredients += toString(driver.ops[j-1]) + " ingredientM\n";
+      method += "Add " + std::string("ingredientN to the 1st mixing bowl.\n");
+      method += "Divide " + std::string("ingredientM into 1st mixing bowl.\n");
+
+    }
+
+    for(int i =0;i<driver.ops.size();i++){
+      //cout<<driver.ops[i]<<endl;
+    }
+    ingredients+='\n';
+    
     cout<<header + ingredients+ method + endcode<<endl;
   }
 
