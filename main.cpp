@@ -133,7 +133,9 @@ int main(){
     }
     ingredients+='\n';
 
-    cout<<header + ingredients+ method + endcode<<endl;
+    string temp = "Pre-heat oven to 100 degrees Celsius\n";
+    string time = "Cooking time: 1 minute\n\n";
+    cout<<header + ingredients+ temp + time +method + endcode<<endl;
   }
 
   return 0;
