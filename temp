@@ -12,3 +12,25 @@ T : T "*" F {
    |F       {$$=$1;};
 
 F : "int"   {$$=$$1;};
+
+
+
+switch (driver.ops[1]) {
+  case 0.1: method += "Add " + "ingredient"+driver.ings[posA]+"into the 1st mixing bowl"+'\n';
+                      "Add " + "ingredient"+driver.ings[posB]+"into the 1st mixing bowl"+'\n';
+  case 0.2: method += "Remove " + "ingredient"+driver.ings[posA]+"into the 1st mixing bowl"+'\n';
+                      "Remove " + "ingredient"+driver.ings[posB]+"into the 1st mixing bowl"+'\n';
+  case 0.3: method += "Combine " + "ingredient"+driver.ings[posA]+"into the 1st mixing bowl"+'\n';
+                      "Combine " + "ingredient"+driver.ings[posB]+"into the 1st mixing bowl"+'\n';
+  case 0.4: method += "Divide " + "ingredient"+driver.ings[posA]+"into the 1st mixing bowl"+'\n';
+                      "Divide " + "ingredient"+driver.ings[posB]+"into the 1st mixing bowl"+'\n';
+}
+
+for(int i=3;i<driver.ops.size();i++){
+  switch (driver.ops[i]) {
+    case 0.1: method += "Add " + "ingredient"+driver.ings[i+1]+"into the 1st mixing bowl"+'\n';
+    case 0.2: method += "Remove " + "ingredient"+driver.ings[i+1]+"into the 1st mixing bowl"+'\n';
+    case 0.3: method += "Combine " + "ingredient"+driver.ings[i+1]+"into the 1st mixing bowl"+'\n';
+    case 0.4: method += "Divide " + "ingredient"+driver.ings[i+1]+"into the 1st mixing bowl"+'\n';
+  }
+}

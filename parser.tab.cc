@@ -584,14 +584,14 @@ namespace yy {
   case 3:
 #line 47 "parser.yy" // lalr1.cc:859
     {yylhs.value.as< float > ()=yystack_[2].value.as< float > ()+yystack_[0].value.as< float > ();
-      driver.ops.push_back(yystack_[2].value.as< float > ());driver.ops.push_back(0.1);driver.ops.push_back(yystack_[0].value.as< float > ());}
+      driver.ops.push_back(yystack_[2].value.as< float > ());driver.ops.push_back(5544);driver.ops.push_back(yystack_[0].value.as< float > ());}
 #line 589 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 4:
 #line 49 "parser.yy" // lalr1.cc:859
     {yylhs.value.as< float > ()=yystack_[2].value.as< float > ()-yystack_[0].value.as< float > ();
-      driver.ops.push_back(yystack_[2].value.as< float > ());driver.ops.push_back(0.2);driver.ops.push_back(yystack_[0].value.as< float > ());}
+      driver.ops.push_back(yystack_[2].value.as< float > ());driver.ops.push_back(4455);driver.ops.push_back(yystack_[0].value.as< float > ());}
 #line 596 "parser.tab.cc" // lalr1.cc:859
     break;
 
@@ -604,14 +604,14 @@ namespace yy {
   case 6:
 #line 53 "parser.yy" // lalr1.cc:859
     {yylhs.value.as< float > ()=yystack_[2].value.as< float > ()*yystack_[0].value.as< float > ();
-      driver.ops.push_back(yystack_[2].value.as< float > ());driver.ops.push_back(0.3);driver.ops.push_back(yystack_[0].value.as< float > ());}
+      driver.ops.push_back(yystack_[2].value.as< float > ());driver.ops.push_back(7788);driver.ops.push_back(yystack_[0].value.as< float > ());}
 #line 609 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 7:
 #line 55 "parser.yy" // lalr1.cc:859
     {yylhs.value.as< float > ()=yystack_[2].value.as< float > ()/yystack_[0].value.as< float > ();
-      driver.ops.push_back(yystack_[2].value.as< float > ());driver.ops.push_back(0.4);driver.ops.push_back(yystack_[0].value.as< float > ());}
+      driver.ops.push_back(yystack_[2].value.as< float > ());driver.ops.push_back(8877);driver.ops.push_back(yystack_[0].value.as< float > ());}
 #line 616 "parser.tab.cc" // lalr1.cc:859
     break;
 
