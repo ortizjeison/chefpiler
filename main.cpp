@@ -9,7 +9,7 @@ int main()
     printf("La entrada es incorrecta\n");
   }else{
     printf("La entrada es correcta\n");
-    //printf("Resultado = %f\n",driver.resultado);
+    printf("Resultado = %f\n",driver.resultado);
   }
   return 0;
 }

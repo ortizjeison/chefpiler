@@ -15,39 +15,17 @@ static yy::location loc;
 ws [ \t\n]+
 digit [0-9]
 integer {digit}+
-if (if)
-elsif (elsif)
-else (else)
-and (and)
-or (or)
-not (not)
-xor (xor)
 
 %%
-/*espacio? nada*/
+
 {ws}  {}
+{integer} {return yy::compilador_parser::make_INT(strtol (yytext, NULL, 10),loc);}
 
-{integer} {return yy::compilador_parser::make_NUMERO(strtol (yytext, NULL, 10),loc);}
-/*{IDENTIFICADOR}	{return yy::compilador_parser::make_IDENTIFICADOR(yytext,loc);}*/
-
-/*Operadores*/
 "+"		{return yy::compilador_parser::make_PLUS(loc);}
 "-"		{return yy::compilador_parser::make_MINUS(loc);}
 "*"		{return yy::compilador_parser::make_TIMES(loc);}
 "/"		{return yy::compilador_parser::make_DIV(loc);}
 
-/*condicionales*/
-{if} {return yy::compilador_parser::make_IF(loc);}
-{elsif} {return yy::compilador_parser::make_ELSIF(loc);}
-{else} {return yy::compilador_parser::make_PLUS(loc);}
-
-/*Operadores lógicos*/
-{and} {return yy::compilador_parser::make_AND(loc);}
-{or} {return yy::compilador_parser::make_OR(loc);}
-{not} {return yy::compilador_parser::make_NOT(loc);}
-{xor} {return yy::compilador_parser::make_XOR(loc);}
-
-.     {//printf("ERROR LEXICO %s\n",yytext);}
 <<EOF>>		{return yy::compilador_parser::make_FIN(loc);}
 
 %%

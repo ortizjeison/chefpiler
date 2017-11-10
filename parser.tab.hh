@@ -290,14 +290,13 @@ namespace yy {
     /// An auxiliary type to compute the largest semantic type.
     union union_type
     {
-      // "num"
       // E
       // T
       // F
       char dummy1[sizeof(float)];
 
-      // "id"
-      char dummy2[sizeof(std::string)];
+      // "int"
+      char dummy2[sizeof(int)];
 };
 
     /// Symbol semantic values.
@@ -321,12 +320,11 @@ namespace yy {
       enum yytokentype
       {
         TOK_FIN = 0,
-        TOK_MAS = 258,
-        TOK_MENOS = 259,
-        TOK_POR = 260,
-        TOK_DIVISION = 261,
-        TOK_IDENTIFICADOR = 262,
-        TOK_NUMERO = 263
+        TOK_PLUS = 258,
+        TOK_INT = 259,
+        TOK_MINUS = 260,
+        TOK_TIMES = 261,
+        TOK_DIV = 262
       };
     };
 
@@ -366,7 +364,7 @@ namespace yy {
 
   basic_symbol (typename Base::kind_type t, const float v, const location_type& l);
 
-  basic_symbol (typename Base::kind_type t, const std::string v, const location_type& l);
+  basic_symbol (typename Base::kind_type t, const int v, const location_type& l);
 
 
       /// Constructor for symbols with semantic value.
@@ -441,27 +439,23 @@ namespace yy {
 
     static inline
     symbol_type
-    make_MAS (const location_type& l);
+    make_PLUS (const location_type& l);
 
     static inline
     symbol_type
-    make_MENOS (const location_type& l);
+    make_INT (const int& v, const location_type& l);
 
     static inline
     symbol_type
-    make_POR (const location_type& l);
+    make_MINUS (const location_type& l);
 
     static inline
     symbol_type
-    make_DIVISION (const location_type& l);
+    make_TIMES (const location_type& l);
 
     static inline
     symbol_type
-    make_IDENTIFICADOR (const std::string& v, const location_type& l);
-
-    static inline
-    symbol_type
-    make_NUMERO (const float& v, const location_type& l);
+    make_DIV (const location_type& l);
 
 
     /// Build a parser object.
@@ -673,7 +667,7 @@ namespace yy {
       yyfinal_ = 6, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 9  ///< Number of tokens.
+      yyntokens_ = 8  ///< Number of tokens.
     };
 
 
@@ -716,9 +710,9 @@ namespace yy {
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8
+       5,     6,     7
     };
-    const unsigned int user_token_number_max_ = 263;
+    const unsigned int user_token_number_max_ = 262;
     const token_number_type undef_token_ = 2;
 
     if (static_cast<int>(t) <= yyeof_)
@@ -751,15 +745,14 @@ namespace yy {
   {
       switch (other.type_get ())
     {
-      case 8: // "num"
-      case 11: // E
-      case 12: // T
-      case 13: // F
+      case 10: // E
+      case 11: // T
+      case 12: // F
         value.copy< float > (other.value);
         break;
 
-      case 7: // "id"
-        value.copy< std::string > (other.value);
+      case 4: // "int"
+        value.copy< int > (other.value);
         break;
 
       default:
@@ -779,15 +772,14 @@ namespace yy {
     (void) v;
       switch (this->type_get ())
     {
-      case 8: // "num"
-      case 11: // E
-      case 12: // T
-      case 13: // F
+      case 10: // E
+      case 11: // T
+      case 12: // F
         value.copy< float > (v);
         break;
 
-      case 7: // "id"
-        value.copy< std::string > (v);
+      case 4: // "int"
+        value.copy< int > (v);
         break;
 
       default:
@@ -813,7 +805,7 @@ namespace yy {
   {}
 
   template <typename Base>
-  compilador_parser::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const std::string v, const location_type& l)
+  compilador_parser::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const int v, const location_type& l)
     : Base (t)
     , value (v)
     , location (l)
@@ -845,15 +837,14 @@ namespace yy {
     // Type destructor.
     switch (yytype)
     {
-      case 8: // "num"
-      case 11: // E
-      case 12: // T
-      case 13: // F
+      case 10: // E
+      case 11: // T
+      case 12: // F
         value.template destroy< float > ();
         break;
 
-      case 7: // "id"
-        value.template destroy< std::string > ();
+      case 4: // "int"
+        value.template destroy< int > ();
         break;
 
       default:
@@ -879,15 +870,14 @@ namespace yy {
     super_type::move(s);
       switch (this->type_get ())
     {
-      case 8: // "num"
-      case 11: // E
-      case 12: // T
-      case 13: // F
+      case 10: // E
+      case 11: // T
+      case 12: // F
         value.move< float > (s.value);
         break;
 
-      case 7: // "id"
-        value.move< std::string > (s.value);
+      case 4: // "int"
+        value.move< int > (s.value);
         break;
 
       default:
@@ -945,7 +935,7 @@ namespace yy {
     const unsigned short int
     yytoken_number_[] =
     {
-       0,   256,   257,   258,   259,   260,   261,   262,   263
+       0,   256,   257,   258,   259,   260,   261,   262
     };
     return static_cast<token_type> (yytoken_number_[type]);
   }
@@ -957,45 +947,39 @@ namespace yy {
   }
 
   compilador_parser::symbol_type
-  compilador_parser::make_MAS (const location_type& l)
+  compilador_parser::make_PLUS (const location_type& l)
   {
-    return symbol_type (token::TOK_MAS, l);
+    return symbol_type (token::TOK_PLUS, l);
   }
 
   compilador_parser::symbol_type
-  compilador_parser::make_MENOS (const location_type& l)
+  compilador_parser::make_INT (const int& v, const location_type& l)
   {
-    return symbol_type (token::TOK_MENOS, l);
+    return symbol_type (token::TOK_INT, v, l);
   }
 
   compilador_parser::symbol_type
-  compilador_parser::make_POR (const location_type& l)
+  compilador_parser::make_MINUS (const location_type& l)
   {
-    return symbol_type (token::TOK_POR, l);
+    return symbol_type (token::TOK_MINUS, l);
   }
 
   compilador_parser::symbol_type
-  compilador_parser::make_DIVISION (const location_type& l)
+  compilador_parser::make_TIMES (const location_type& l)
   {
-    return symbol_type (token::TOK_DIVISION, l);
+    return symbol_type (token::TOK_TIMES, l);
   }
 
   compilador_parser::symbol_type
-  compilador_parser::make_IDENTIFICADOR (const std::string& v, const location_type& l)
+  compilador_parser::make_DIV (const location_type& l)
   {
-    return symbol_type (token::TOK_IDENTIFICADOR, v, l);
-  }
-
-  compilador_parser::symbol_type
-  compilador_parser::make_NUMERO (const float& v, const location_type& l)
-  {
-    return symbol_type (token::TOK_NUMERO, v, l);
+    return symbol_type (token::TOK_DIV, l);
   }
 
 
 #line 6 "parser.yy" // lalr1.cc:377
 } // yy
-#line 999 "parser.tab.hh" // lalr1.cc:377
+#line 983 "parser.tab.hh" // lalr1.cc:377
 
 
 

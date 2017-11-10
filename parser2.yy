@@ -30,35 +30,37 @@ class compilador_driver;
 %token MINUS "-"
 %token TIMES "*"
 %token DIV "/"
-%token FIN 0 "eof"
-
+%token IF "if"
+%token ELSIF "elsif"
+%token PLUS "+"
+%token AND  "and"
+%token OR "or"
+%token NOT  "not"
+%token XOR  "xor"
 //Listado de No Terminales
 %type <float> E
 %type <float> T
 %type <float> F
 
 %printer { yyoutput << $$; } <*>;
-
 %%
 %start INICIO;
 
 INICIO : E {driver.resultado= $1;};
 
-E : E "+" T {$$=$1+$3;}
+E : E "+" T {$$=$1+$2;}
    |E "-" T {$$=$1-$3;}
    |T       {$$=$1;};
 
-T : T "*" F {
-  $$=$1*$3;
-  //Operacion en chef (String)
-}
-   |T "/" F {$$=$1/$3;}
-   |F       {$$=$1;};
+T : T "*" F {$$=$1*$2}
+   |T "/" F {$$=$1/$2}
+   |F       {$$=$1};
 
-F : "int"   {$$=$1;};
+F : "int"   {$$=$$1};
 
 %%
 void yy::compilador_parser::error(const location_type& lugar, const std::string& lexema)
 {
   std::cout << "error custom string " << lexema << std::endl;
 }
+pars

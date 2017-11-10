@@ -49,7 +49,7 @@
 
 #line 51 "parser.tab.cc" // lalr1.cc:412
 // Unqualified %code blocks.
-#line 20 "parser.yy" // lalr1.cc:413
+#line 21 "parser.yy" // lalr1.cc:413
 
 #include "driver.h"
 #include <iostream>
@@ -252,15 +252,14 @@ namespace yy {
   {
       switch (that.type_get ())
     {
-      case 8: // "num"
-      case 11: // E
-      case 12: // T
-      case 13: // F
+      case 10: // E
+      case 11: // T
+      case 12: // F
         value.move< float > (that.value);
         break;
 
-      case 7: // "id"
-        value.move< std::string > (that.value);
+      case 4: // "int"
+        value.move< int > (that.value);
         break;
 
       default:
@@ -278,15 +277,14 @@ namespace yy {
     state = that.state;
       switch (that.type_get ())
     {
-      case 8: // "num"
-      case 11: // E
-      case 12: // T
-      case 13: // F
+      case 10: // E
+      case 11: // T
+      case 12: // F
         value.copy< float > (that.value);
         break;
 
-      case 7: // "id"
-        value.copy< std::string > (that.value);
+      case 4: // "int"
+        value.copy< int > (that.value);
         break;
 
       default:
@@ -325,39 +323,32 @@ namespace yy {
         << yysym.location << ": ";
     switch (yytype)
     {
-            case 7: // "id"
+            case 4: // "int"
 
 #line 40 "parser.yy" // lalr1.cc:636
-        { yyoutput << yysym.value.template as< std::string > (); }
-#line 333 "parser.tab.cc" // lalr1.cc:636
+        { yyoutput << yysym.value.template as< int > (); }
+#line 331 "parser.tab.cc" // lalr1.cc:636
         break;
 
-      case 8: // "num"
+      case 10: // E
 
 #line 40 "parser.yy" // lalr1.cc:636
         { yyoutput << yysym.value.template as< float > (); }
-#line 340 "parser.tab.cc" // lalr1.cc:636
+#line 338 "parser.tab.cc" // lalr1.cc:636
         break;
 
-      case 11: // E
+      case 11: // T
 
 #line 40 "parser.yy" // lalr1.cc:636
         { yyoutput << yysym.value.template as< float > (); }
-#line 347 "parser.tab.cc" // lalr1.cc:636
+#line 345 "parser.tab.cc" // lalr1.cc:636
         break;
 
-      case 12: // T
+      case 12: // F
 
 #line 40 "parser.yy" // lalr1.cc:636
         { yyoutput << yysym.value.template as< float > (); }
-#line 354 "parser.tab.cc" // lalr1.cc:636
-        break;
-
-      case 13: // F
-
-#line 40 "parser.yy" // lalr1.cc:636
-        { yyoutput << yysym.value.template as< float > (); }
-#line 361 "parser.tab.cc" // lalr1.cc:636
+#line 352 "parser.tab.cc" // lalr1.cc:636
         break;
 
 
@@ -557,15 +548,14 @@ namespace yy {
          when using variants.  */
         switch (yyr1_[yyn])
     {
-      case 8: // "num"
-      case 11: // E
-      case 12: // T
-      case 13: // F
+      case 10: // E
+      case 11: // T
+      case 12: // F
         yylhs.value.build< float > ();
         break;
 
-      case 7: // "id"
-        yylhs.value.build< std::string > ();
+      case 4: // "int"
+        yylhs.value.build< int > ();
         break;
 
       default:
@@ -585,8 +575,59 @@ namespace yy {
         {
           switch (yyn)
             {
+  case 2:
+#line 45 "parser.yy" // lalr1.cc:859
+    {driver.resultado= yystack_[0].value.as< float > ();}
+#line 582 "parser.tab.cc" // lalr1.cc:859
+    break;
 
-#line 590 "parser.tab.cc" // lalr1.cc:859
+  case 3:
+#line 47 "parser.yy" // lalr1.cc:859
+    {yylhs.value.as< float > ()=yystack_[2].value.as< float > ()+yystack_[0].value.as< float > ();}
+#line 588 "parser.tab.cc" // lalr1.cc:859
+    break;
+
+  case 4:
+#line 48 "parser.yy" // lalr1.cc:859
+    {yylhs.value.as< float > ()=yystack_[2].value.as< float > ()-yystack_[0].value.as< float > ();}
+#line 594 "parser.tab.cc" // lalr1.cc:859
+    break;
+
+  case 5:
+#line 49 "parser.yy" // lalr1.cc:859
+    {yylhs.value.as< float > ()=yystack_[0].value.as< float > ();}
+#line 600 "parser.tab.cc" // lalr1.cc:859
+    break;
+
+  case 6:
+#line 51 "parser.yy" // lalr1.cc:859
+    {
+  yylhs.value.as< float > ()=yystack_[2].value.as< float > ()*yystack_[0].value.as< float > ();
+  //Operacion en chef (String)
+}
+#line 609 "parser.tab.cc" // lalr1.cc:859
+    break;
+
+  case 7:
+#line 55 "parser.yy" // lalr1.cc:859
+    {yylhs.value.as< float > ()=yystack_[2].value.as< float > ()/yystack_[0].value.as< float > ();}
+#line 615 "parser.tab.cc" // lalr1.cc:859
+    break;
+
+  case 8:
+#line 56 "parser.yy" // lalr1.cc:859
+    {yylhs.value.as< float > ()=yystack_[0].value.as< float > ();}
+#line 621 "parser.tab.cc" // lalr1.cc:859
+    break;
+
+  case 9:
+#line 58 "parser.yy" // lalr1.cc:859
+    {yylhs.value.as< float > ()=yystack_[0].value.as< int > ();}
+#line 627 "parser.tab.cc" // lalr1.cc:859
+    break;
+
+
+#line 631 "parser.tab.cc" // lalr1.cc:859
             default:
               break;
             }
@@ -841,15 +882,15 @@ namespace yy {
   }
 
 
-  const signed char compilador_parser::yypact_ninf_ = -7;
+  const signed char compilador_parser::yypact_ninf_ = -4;
 
   const signed char compilador_parser::yytable_ninf_ = -1;
 
   const signed char
   compilador_parser::yypact_[] =
   {
-      -6,    -7,     5,    -3,    -2,    -7,    -7,    -6,    -6,    -6,
-      -6,    -2,    -2,    -7,    -7
+       4,    -4,     1,    -3,    -2,    -4,    -4,     4,     4,     4,
+       4,    -2,    -2,    -4,    -4
   };
 
   const unsigned char
@@ -862,7 +903,7 @@ namespace yy {
   const signed char
   compilador_parser::yypgoto_[] =
   {
-      -7,    -7,    -7,    -1,     0
+      -4,    -4,    -4,    -1,     0
   };
 
   const signed char
@@ -874,28 +915,28 @@ namespace yy {
   const unsigned char
   compilador_parser::yytable_[] =
   {
-       7,     8,     1,     9,    10,     6,    11,    12,     0,    13,
+       7,     6,     8,     0,     9,    10,    11,    12,     1,    13,
       14
   };
 
   const signed char
   compilador_parser::yycheck_[] =
   {
-       3,     4,     8,     5,     6,     0,     7,     8,    -1,     9,
+       3,     0,     5,    -1,     6,     7,     7,     8,     4,     9,
       10
   };
 
   const unsigned char
   compilador_parser::yystos_[] =
   {
-       0,     8,    10,    11,    12,    13,     0,     3,     4,     5,
-       6,    12,    12,    13,    13
+       0,     4,     9,    10,    11,    12,     0,     3,     5,     6,
+       7,    11,    11,    12,    12
   };
 
   const unsigned char
   compilador_parser::yyr1_[] =
   {
-       0,     9,    10,    11,    11,    11,    12,    12,    12,    13
+       0,     8,     9,    10,    10,    10,    11,    11,    11,    12
   };
 
   const unsigned char
@@ -911,15 +952,15 @@ namespace yy {
   const char*
   const compilador_parser::yytname_[] =
   {
-  "\"eof\"", "error", "$undefined", "\"+\"", "\"-\"", "\"*\"", "\"/\"",
-  "\"id\"", "\"num\"", "$accept", "INICIO", "E", "T", "F", YY_NULLPTR
+  "\"eof\"", "error", "$undefined", "\"+\"", "\"int\"", "\"-\"", "\"*\"",
+  "\"/\"", "$accept", "INICIO", "E", "T", "F", YY_NULLPTR
   };
 
 #if YYDEBUG
   const unsigned char
   compilador_parser::yyrline_[] =
   {
-       0,    44,    44,    46,    47,    48,    50,    51,    52,    54
+       0,    45,    45,    47,    48,    49,    51,    55,    56,    58
   };
 
   // Print the state stack on the debug stream.
@@ -954,10 +995,10 @@ namespace yy {
 
 #line 6 "parser.yy" // lalr1.cc:1167
 } // yy
-#line 958 "parser.tab.cc" // lalr1.cc:1167
-#line 55 "parser.yy" // lalr1.cc:1168
+#line 999 "parser.tab.cc" // lalr1.cc:1167
+#line 60 "parser.yy" // lalr1.cc:1168
 
 void yy::compilador_parser::error(const location_type& lugar, const std::string& lexema)
 {
-  std::cout << "Error Sintactico " << lexema << std::endl;
+  std::cout << "error custom string " << lexema << std::endl;
 }

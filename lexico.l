@@ -8,30 +8,49 @@
 #define yywrap() 1
 static yy::location loc;
 %}
+
 %option noyywrap nounput batch debug noinput
 %option outfile="scanner.cpp"
 
-DIGITO [0-9]
-LETRA [a-zA-ZñÑ]
+ws [ \t\n]+
+digit [0-9]
+integer {digit}+
+if (if)
+elsif (elsif)
+else (else)
+and (and)
+or (or)
+not (not)
+xor (xor)
 
-NUMERO {DIGITO}+("."{DIGITO}+)?
-IDENTIFICADOR {LETRA}({LETRA}|{DIGITO}|"_")*
-
-DELIMITADOR [\t\r\f" "]
 %%
-{NUMERO}        {return yy::compilador_parser::make_NUMERO(strtol (yytext, NULL, 10),loc);}
-{IDENTIFICADOR}	{return yy::compilador_parser::make_IDENTIFICADOR(yytext,loc);}
-"+"		{return yy::compilador_parser::make_MAS(loc);}
-"-"		{return yy::compilador_parser::make_MENOS(loc);}
-"*"		{return yy::compilador_parser::make_POR(loc);}
-"/"		{return yy::compilador_parser::make_DIVISION(loc);}
+/*espacio? nada*/
+{ws}  {}
+{integer} {return yy::compilador_parser::make_INT(strtol (yytext, NULL, 10),loc);}
+/*{IDENTIFICADOR}	{return yy::compilador_parser::make_IDENTIFICADOR(yytext,loc);}*/
 
-{DELIMITADOR}   {}
-.               {printf("ERROR LEXICO %s\n",yytext);}
+/*Operadores*/
+"+"		{return yy::compilador_parser::make_PLUS(loc);}
+"-"		{return yy::compilador_parser::make_MINUS(loc);}
+"*"		{return yy::compilador_parser::make_TIMES(loc);}
+"/"		{return yy::compilador_parser::make_DIV(loc);}
+
+/*condicionales*/
+{if} {return yy::compilador_parser::make_IF(loc);}
+{elsif} {return yy::compilador_parser::make_ELSIF(loc);}
+{else} {return yy::compilador_parser::make_PLUS(loc);}
+
+/*Operadores lógicos*/
+{and} {return yy::compilador_parser::make_AND(loc);}
+{or} {return yy::compilador_parser::make_OR(loc);}
+{not} {return yy::compilador_parser::make_NOT(loc);}
+{xor} {return yy::compilador_parser::make_XOR(loc);}
+
+.     {//printf("ERROR LEXICO %s\n",yytext);}
 <<EOF>>		{return yy::compilador_parser::make_FIN(loc);}
+
 %%
-void compilador_driver::iniciarScanner()
-{
+void compilador_driver::iniciarScanner(){
   yy_flex_debug = false;
   if(file.empty() || file == "-"){
     printf("No se encuentra el archivo de entrada");
@@ -40,7 +59,6 @@ void compilador_driver::iniciarScanner()
     yyin = fopen (file.c_str (), "r");
   }
 }
-void compilador_driver::terminarScanner()
-{
+void compilador_driver::terminarScanner(){
   fclose(yyin);
 }
