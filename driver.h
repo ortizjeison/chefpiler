@@ -2,6 +2,11 @@
 # define DRIVER
 # include <string>
 # include "parser.tab.hh"
+#include <stdio.h>
+#include "driver.h"
+#include <sstream>
+#include "iostream"
+#include <bits/stdc++.h>
 #define YY_DECL \
   yy::compilador_parser::symbol_type yylex (compilador_driver& driver)
 YY_DECL;

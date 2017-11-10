@@ -44,10 +44,8 @@ class compilador_driver;
 
 INICIO : E {driver.codigo= $1;};
 
-E : E "+" T {$$=$1+$3; driver.sumA= $1; driver.sumB=$3;
-
-}
-   |E "-" T {$$=$1-$3;}
+E : E "+" T {$$=$1+$3; driver.sumA= $1; driver.sumB=$3;}
+   |E "-" T {$$=$1-$3;};
    |T       {$$=$1;};
 
 T : T "*" F {$$=$1*$3;}

@@ -583,50 +583,48 @@ namespace yy {
 
   case 3:
 #line 47 "parser.yy" // lalr1.cc:859
-    {yylhs.value.as< float > ()=yystack_[2].value.as< float > ()+yystack_[0].value.as< float > (); driver.sumA= yystack_[2].value.as< float > (); driver.sumB=yystack_[0].value.as< float > ();
-
-}
-#line 590 "parser.tab.cc" // lalr1.cc:859
+    {yylhs.value.as< float > ()=yystack_[2].value.as< float > ()+yystack_[0].value.as< float > (); driver.sumA= yystack_[2].value.as< float > (); driver.sumB=yystack_[0].value.as< float > ();}
+#line 588 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 4:
-#line 50 "parser.yy" // lalr1.cc:859
+#line 48 "parser.yy" // lalr1.cc:859
     {yylhs.value.as< float > ()=yystack_[2].value.as< float > ()-yystack_[0].value.as< float > ();}
-#line 596 "parser.tab.cc" // lalr1.cc:859
+#line 594 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 5:
-#line 51 "parser.yy" // lalr1.cc:859
+#line 49 "parser.yy" // lalr1.cc:859
     {yylhs.value.as< float > ()=yystack_[0].value.as< float > ();}
-#line 602 "parser.tab.cc" // lalr1.cc:859
+#line 600 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 6:
-#line 53 "parser.yy" // lalr1.cc:859
+#line 51 "parser.yy" // lalr1.cc:859
     {yylhs.value.as< float > ()=yystack_[2].value.as< float > ()*yystack_[0].value.as< float > ();}
-#line 608 "parser.tab.cc" // lalr1.cc:859
+#line 606 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 7:
-#line 54 "parser.yy" // lalr1.cc:859
+#line 52 "parser.yy" // lalr1.cc:859
     {yylhs.value.as< float > ()=yystack_[2].value.as< float > ()/yystack_[0].value.as< float > ();}
-#line 614 "parser.tab.cc" // lalr1.cc:859
+#line 612 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 8:
-#line 55 "parser.yy" // lalr1.cc:859
+#line 53 "parser.yy" // lalr1.cc:859
     {yylhs.value.as< float > ()=yystack_[0].value.as< float > ();}
-#line 620 "parser.tab.cc" // lalr1.cc:859
+#line 618 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 9:
-#line 57 "parser.yy" // lalr1.cc:859
+#line 55 "parser.yy" // lalr1.cc:859
     {yylhs.value.as< float > ()=yystack_[0].value.as< int > (); driver.ings.push_back(yystack_[0].value.as< int > ());}
-#line 626 "parser.tab.cc" // lalr1.cc:859
+#line 624 "parser.tab.cc" // lalr1.cc:859
     break;
 
 
-#line 630 "parser.tab.cc" // lalr1.cc:859
+#line 628 "parser.tab.cc" // lalr1.cc:859
             default:
               break;
             }
@@ -959,7 +957,7 @@ namespace yy {
   const unsigned char
   compilador_parser::yyrline_[] =
   {
-       0,    45,    45,    47,    50,    51,    53,    54,    55,    57
+       0,    45,    45,    47,    48,    49,    51,    52,    53,    55
   };
 
   // Print the state stack on the debug stream.
@@ -994,8 +992,8 @@ namespace yy {
 
 #line 6 "parser.yy" // lalr1.cc:1167
 } // yy
-#line 998 "parser.tab.cc" // lalr1.cc:1167
-#line 59 "parser.yy" // lalr1.cc:1168
+#line 996 "parser.tab.cc" // lalr1.cc:1167
+#line 57 "parser.yy" // lalr1.cc:1168
 
 void yy::compilador_parser::error(const location_type& lugar, const std::string& lexema)
 {
